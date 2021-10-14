@@ -1754,7 +1754,7 @@ class NetBIOSNameField(StrFixedLenField):
         else:
             len_pkt = 0
         x = bytes_encode(y or b"")  # type: bytes
-        x += b" " * len_pkt
+        x += b"\x00" * len_pkt
         x = x[:len_pkt]
         x = b"".join(
             chb(0x41 + (orb(b) >> 4)) +
